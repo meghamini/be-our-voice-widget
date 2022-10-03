@@ -12,5 +12,6 @@ export interface QueryParams {
     layout?: number,
     dismissable?: boolean, 
     theme?: string
+    imageId?: number
     shape?: string
 }

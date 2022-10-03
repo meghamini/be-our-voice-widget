@@ -22,6 +22,7 @@ function renderWidget(params: QueryParams) {
     dismissable = true, // default true 
     theme = 'light',
     shape = 'normal',
+    imageId = 0,
     ...otherOptions
   } = params;
 
@@ -40,7 +41,7 @@ function renderWidget(params: QueryParams) {
    */
   widgetWrapper.classList.add(...[
     'widget-wrapper', 
-    'fixed', 
+    'fixed',
     theme, 
     position.toString(), 
     shape
