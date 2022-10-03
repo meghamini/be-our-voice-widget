@@ -1,0 +1,18 @@
+{
+    "name": "be-our-voice-widget-vanilla",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@types/node": "^18.7.23",
+        "sass": "^1.55.0",
+        "typescript": "^4.6.4",
+        "vite": "^3.1.0",
+        "vite-plugin-css-injected-by-js": "^2.1.0"
+    }
+}

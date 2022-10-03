@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;500&display=swap');
+.widget-wrapper {
+    &.fixed {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        &[class*="bottom"] {
+            top: auto;
+            bottom: 10px;
+        }
+        &[class*=center] {
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        &[class*=right] {
+            left: auto;
+            right: 10px;
+        }
+    }
+    .dismiss-widget {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: #181818;
+        color: #fff;
+        border-radius: 50%;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        line-height: 0px;
+        cursor: pointer;
+        transform: translateX(5px) translateY(-5px);
+    }
+    &.mobile-mode {
+        .dismiss-widget {
+            display: none;
+        }
+    }
+    &.dark {
+        .dismiss-widget {
+            background-color: #999;
+        }
+    }
+}
+
+.widget {
+    background-color: #fff;
+    padding: 6px;
+    display: flex;
+    width: auto;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    animation: open 0.4s ease;
+}
+
+
+/**
+ * Rounded borders
+ */
+
+.rounded .widget {
+    border-radius: 8px;
+}
+
+
+/**
+ * Oval shape
+ */
+
+.oval .widget {
+    border-radius: 4em 4em 4em;
+}
+
+
+/**
+ * Detached
+ */
+
+.detached .widget {
+    height: auto;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.widget.closed {
+    max-width: 64px;
+    animation: close 0.4s ease;
+    opacity: 0.8;
+    transition: opacity ease 0.4s;
+    cursor: pointer;
+}
+
+.widget.layout1.closed {
+    max-width: 115px;
+    animation: closeLarge 0.4s ease;
+}
+
+.widget.closed .widget-text {
+    opacity: 0;
+    transition: opacity ease 0.2s;
+}
+
+.widget.closed:hover {
+    opacity: 1;
+}
+
+.widget-image {
+    margin-right: 1rem;
+}
+
+.widget-image img {
+    display: block;
+}
+
+.widget-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    margin-right: 2rem;
+    font-family: 'Dosis', sans-serif;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity ease 0.2s;
+}
+
+.widget-text span {
+    color: #999;
+}
+
+.widget-text span strong {
+    color: #181818;
+}
+
+.widget-action,
+.widget-action span {
+    color: #3A86FF;
+    cursor: pointer;
+}
+
+
+/**
+ * Dark mode
+ */
+
+.dark .widget {
+    background-color: #181818;
+}
+
+.dark .widget .widget-text span {
+    color: #ccc;
+}
+
+.dark .widget .widget-text strong {
+    color: #fff;
+}
+
+
+/**
+ * Rounded borders
+ */
+
+.rounded .widget .widget-image img {
+    border-radius: 8px;
+}
+
+
+/**
+ * Oval shape
+ */
+
+.oval .widget .widget-image img {
+    border-radius: 4em;
+}
+
+
+/**
+ * Detached
+ */
+
+.detached .widget .widget-image {
+    margin-right: 0.5rem;
+}
+
+.detached .widget .widget-image img {
+    width: 76px;
+    border-radius: 8px;
+}
+
+.detached .widget .widget-text {
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    padding: 10px 15px;
+    margin-right: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.detached.dark .widget {
+    background: transparent;
+}
+
+.detached .widget {
+    animation: openDetached 0.4s ease;
+}
+
+.detached .widget.closed {
+    max-width: 76px;
+    animation: closeDetached 0.4s ease;
+}
+
+.detached.dark .widget .widget-text {
+    background-color: #181818;
+}
+
+
+/**
+ * open/close animations
+ */
+
+@keyframes open {
+    0% {
+        max-width: 64px;
+    }
+    100% {
+        max-width: 300px;
+    }
+}
+
+@keyframes close {
+    0% {
+        max-width: 300px;
+    }
+    100% {
+        max-width: 64px;
+    }
+}
+
+@keyframes closeLarge {
+    0% {
+        max-width: 300px;
+    }
+    100% {
+        max-width: 115px;
+    }
+}
+
+@keyframes openDetached {
+    0% {
+        max-width: 76px;
+    }
+    100% {
+        max-width: 300px;
+    }
+}
+
+@keyframes closeDetached {
+    0% {
+        max-width: 300px;
+    }
+    100% {
+        max-width: 76px;
+    }
+}
