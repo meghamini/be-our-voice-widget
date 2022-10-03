@@ -54,7 +54,7 @@
     border: 1px solid #ddd;
     overflow: hidden;
     box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
-    animation: open 0.4s ease;
+    transition: all ease 0.4s;
 }
 
 
@@ -88,21 +88,9 @@
 }
 
 .widget.closed {
-    max-width: 64px;
-    animation: close 0.4s ease;
     opacity: 0.8;
-    transition: opacity ease 0.4s;
+    transition: all ease 0.4s;
     cursor: pointer;
-}
-
-.widget.layout1.closed {
-    max-width: 115px;
-    animation: closeLarge 0.4s ease;
-}
-
-.widget.closed .widget-text {
-    opacity: 0;
-    transition: opacity ease 0.2s;
 }
 
 .widget.closed:hover {
@@ -111,6 +99,7 @@
 
 .widget-image {
     margin-right: 1rem;
+    transition: all ease 0.4s;
 }
 
 .widget-image img {
@@ -126,15 +115,28 @@
     font-family: 'Dosis', sans-serif;
     white-space: nowrap;
     opacity: 1;
-    transition: opacity ease 0.2s;
+    transition: all ease 0.4s;
+    max-width: 400px;
 }
 
-.widget-text span {
+.widget.closed .widget-image {
+    margin: 0;
+    transition: all ease 0.4s;
+}
+
+.widget.closed .widget-text {
+    opacity: 0;
+    margin: 0;
+    transition: all ease 0.4s;
+    max-width: 0;
+}
+
+.widget-text p {
     color: #999;
 }
 
-.widget-text span strong {
-    color: #181818;
+.widget-text span {
+    color: #3a3a3a;
 }
 
 .widget-action,
@@ -205,65 +207,10 @@
     background: transparent;
 }
 
-.detached .widget {
-    animation: openDetached 0.4s ease;
-}
-
 .detached .widget.closed {
     max-width: 76px;
-    animation: closeDetached 0.4s ease;
 }
 
 .detached.dark .widget .widget-text {
     background-color: #181818;
-}
-
-
-/**
- * open/close animations
- */
-
-@keyframes open {
-    0% {
-        max-width: 64px;
-    }
-    100% {
-        max-width: 300px;
-    }
-}
-
-@keyframes close {
-    0% {
-        max-width: 300px;
-    }
-    100% {
-        max-width: 64px;
-    }
-}
-
-@keyframes closeLarge {
-    0% {
-        max-width: 300px;
-    }
-    100% {
-        max-width: 115px;
-    }
-}
-
-@keyframes openDetached {
-    0% {
-        max-width: 76px;
-    }
-    100% {
-        max-width: 300px;
-    }
-}
-
-@keyframes closeDetached {
-    0% {
-        max-width: 300px;
-    }
-    100% {
-        max-width: 76px;
-    }
 }

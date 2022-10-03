@@ -27,10 +27,6 @@ export default class BaseLayout {
     }
 
     switchToMobile() {
-        const widgetTextEl = <HTMLDivElement>this.el?.querySelector('.widget-text')
-        const elementWidth = widgetTextEl?.clientWidth
-
-        widgetTextEl.style.width = `${elementWidth}px`
         this.el?.classList.add('closed')
         this.wrapperEl?.parentElement?.classList.add('mobile-mode')
 
@@ -49,8 +45,6 @@ export default class BaseLayout {
 
     render(parent: HTMLElement, options?: { imageId?: number }) {
         if(options?.imageId) {
-            console.log(options.imageId);
-            
             this.imageId = options?.imageId
         }
         const widgetTemplate = document.createElement('template')
@@ -58,8 +52,6 @@ export default class BaseLayout {
 
         wrapperEl.id = this.name
         widgetTemplate.innerHTML = this.template
-
-        console.log(this.template);
 
         if(widgetTemplate.content.firstChild) {
             wrapperEl.appendChild(widgetTemplate.content.firstChild)
