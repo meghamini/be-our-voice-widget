@@ -22,7 +22,6 @@ function renderWidget(params: QueryParams) {
     dismissable = true, // default true 
     theme = 'light',
     shape = 'normal',
-    imageId = 0,
     ...otherOptions
   } = params;
 
