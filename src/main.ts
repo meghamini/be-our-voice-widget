@@ -119,7 +119,7 @@ function init() {
    * parsed params to `renderWidget` 
    */
   const params = getQueryParams()
-  const widgetInstance = renderWidget(params)
+  renderWidget(params)
   
   /**
    * Exposing renderWidget on window to make 
@@ -128,7 +128,7 @@ function init() {
    * by user, this function will be called each 
    * time to render a fresh copy of widget 
    */
-  window.renderWidget = widgetInstance.render
+  window.renderWidget = renderWidget
 }
 
 init()
