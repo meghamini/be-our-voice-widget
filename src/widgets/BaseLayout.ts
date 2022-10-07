@@ -1,4 +1,4 @@
-import img from '/public/mahsa-1.jpg'
+import img1 from '/public/mahsa-1.jpg'
 
 export default class BaseLayout {
     name = 'base'
@@ -9,7 +9,7 @@ export default class BaseLayout {
     get template() {
         return `<div class="widget">
             <div class="widget-image">
-                <img src="${img}" alt="Mahsa Amini" title="We Are Mahsa Amini" />
+                <img src="${img1}" alt="Mahsa Amini" title="We Are Mahsa Amini" />
             </div>
             <div class="widget-text">
                 <div class="widget-title">

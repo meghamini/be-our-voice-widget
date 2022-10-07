@@ -1,6 +1,6 @@
-import img1 from '/public/mahsa-2.jpg'
-import img2 from '/public/mahsa-3.jpg'
-import img3 from '/public/mahsa-4.jpg'
+import img2 from '/public/mahsa-2.jpg'
+import img3 from '/public/mahsa-3.jpg'
+import img4 from '/public/mahsa-4.jpg'
 
 import BaseLayout from './BaseLayout'
 
@@ -8,9 +8,9 @@ export default class LayoutOne extends BaseLayout {
     name = 'layout1'
 
     images = [
-        img1,
         img2,
-        img3
+        img3,
+        img4
     ]
 
     get template() {
