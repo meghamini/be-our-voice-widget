@@ -2,8 +2,6 @@ import './style.scss'
 import { Position, QueryParams } from "./types"
 import { getLayoutById } from './widgets'
 
-const isDev = process.env.NODE_ENV === 'development'
-
 function renderWidget(params: QueryParams) {
   /**
    * Destroying previously rendered widget
@@ -91,13 +89,17 @@ function renderWidget(params: QueryParams) {
 }
 
 function getQueryParams(): QueryParams {
-  const params = document.getElementById('be-irans-voice')?.getAttribute('src')
-  let paramString = params?.split('?')?.[1]?.split('&')
+  const scriptElement = document.getElementById('be-irans-voice')
+  let paramString;
 
-  if(isDev) {
-    paramString = window.location.href?.split('?')?.[1]?.split('&')
-  }
+  console.log({scriptElement});
   
+  if(scriptElement) {
+    paramString = scriptElement?.getAttribute('src')?.split('?')?.[1].split('&')
+  } else {
+    paramString = window.location.href?.split('?')?.[1].split('&')
+  }
+
   if(!paramString) {
     return {} as QueryParams
   }

@@ -1,4 +1,4 @@
-import img1 from '/public/mahsa-1.jpg'
+import img1 from '/src/assets/images/mahsa-1.jpg'
 
 export default class BaseLayout {
     name = 'base'

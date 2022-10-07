@@ -1,6 +1,6 @@
-import img2 from '/public/mahsa-2.jpg'
-import img3 from '/public/mahsa-3.jpg'
-import img4 from '/public/mahsa-4.jpg'
+import img2 from '/src/assets/images/mahsa-2.jpg'
+import img3 from '/src/assets/images/mahsa-3.jpg'
+import img4 from '/src/assets/images/mahsa-4.jpg'
 
 import BaseLayout from './BaseLayout'
 
