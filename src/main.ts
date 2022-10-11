@@ -1,113 +1,122 @@
-import './style.scss'
-import { Position, QueryParams } from "./types"
-import { getLayoutById } from './widgets'
+import "./style.scss";
+import { Position, QueryParams } from "./types";
+import { getLayoutById } from "./widgets";
 
 function renderWidget(params: QueryParams) {
   /**
    * Destroying previously rendered widget
    */
-  const prevElement = document.querySelector('.widget-wrapper');
-  if(prevElement) {
-    document.body.removeChild(prevElement)
+  const prevElement = document.querySelector(".widget-wrapper");
+  if (prevElement) {
+    document.body.removeChild(prevElement);
   }
 
   /**
-   * Destructing params 
+   * Destructing params
    */
-  const { 
-    position = Position["top-left"], // default top-left 
+  const {
+    position = Position["top-left"], // default top-left
     layout = 0, // default layout1 in case
-    dismissable = true, // default true 
-    theme = 'light',
-    shape = 'normal',
+    dismissable = true, // default true
+    theme = "light",
+    shape = "normal",
     ...otherOptions
   } = params;
 
   /**
    * This element will be the where the
    * widget will finally land
-   * It is created here to give us control 
+   * It is created here to give us control
    * over the widget from outside the layout
    */
-  const widgetWrapper = document.createElement('div')
-  
+  const widgetWrapper = document.createElement("div");
+
   /**
    * Adding a set of class names to widget wrapper
-   * the class names are needed to target this 
+   * the class names are needed to target this
    * element later in the global styles file
    */
-  widgetWrapper.classList.add(...[
-    'widget-wrapper', 
-    'fixed',
-    theme, 
-    position.toString(), 
-    shape
-  ])
+  widgetWrapper.classList.add(
+    ...["widget-wrapper", "fixed", theme, position.toString(), shape]
+  );
+
+  /**
+   * Add widget-top-banner class name to widget
+   * wrapper if the layout is LayoutTopBanner (2)
+   */
+  if (layout == 2) {
+    widgetWrapper.classList.add("widget-top-banner");
+  }
 
   /**
    * Passing layout name received from query params
-   * Returns the layout object 
-   */ 
-  const Widget = getLayoutById(layout)
-  const widgetInstance = new Widget()
+   * Returns the layout object
+   */
+  const Widget = getLayoutById(layout);
+  const widgetInstance = new Widget();
 
   /**
-   * Throwing an error if in case if the layout 
+   * Throwing an error if in case if the layout
    * is not found. This will only happen if no
-   * layout exists in the widgets folder 
+   * layout exists in the widgets folder
    */
-  if(!widgetInstance) {
-    throw new Error(`Layout '${layout}' was not found`)
+  if (!widgetInstance) {
+    throw new Error(`Layout '${layout}' was not found`);
   }
 
   /**
    * Calling to widget's `render` function
    */
-   widgetInstance.render(widgetWrapper, otherOptions)
+  widgetInstance.render(widgetWrapper, otherOptions);
 
-  if(dismissable) {
-    widgetWrapper.classList.add('dimissabled')
+  if (dismissable) {
+    widgetWrapper.classList.add("dimissabled");
 
-    const closeBtn = document.createElement('span')
-    closeBtn.innerHTML = '&#215;'
-    closeBtn.classList.add('dismiss-widget')
+    const closeBtn = document.createElement("span");
+    closeBtn.innerHTML = "&#215;";
+    closeBtn.classList.add("dismiss-widget");
 
-    widgetWrapper.appendChild(closeBtn)
+    widgetWrapper.appendChild(closeBtn);
 
     /**
      * Dispatching a custom event to handle
      * click event of dimiss button
      */
-    closeBtn.addEventListener('click', () => {
-      widgetWrapper.dispatchEvent(new CustomEvent('closeClick'))
-    })
+    closeBtn.addEventListener("click", () => {
+      if (layout == 2) {
+        widgetWrapper.remove();
+      } else {
+        widgetWrapper.dispatchEvent(new CustomEvent("closeClick"));
+      }
+    });
   }
-  
-  document.body.appendChild(widgetWrapper)
 
-  return widgetInstance
+  document.body.appendChild(widgetWrapper);
+
+  return widgetInstance;
 }
 
 function getQueryParams(): QueryParams {
-  const scriptElement = document.getElementById('be-irans-voice')
+  const scriptElement = document.getElementById("be-irans-voice");
   let paramString;
 
-  console.log({scriptElement});
-  
-  if(scriptElement) {
-    paramString = scriptElement?.getAttribute('src')?.split('?')?.[1].split('&')
+  if (scriptElement) {
+    paramString = scriptElement
+      ?.getAttribute("src")
+      ?.split("?")?.[1]
+      .split("&");
   } else {
-    paramString = window.location.href?.split('?')?.[1].split('&')
+    paramString = window.location.href?.split("?")?.[1].split("&");
   }
 
-  if(!paramString) {
-    return {} as QueryParams
+  if (!paramString) {
+    return {} as QueryParams;
   }
-  const parsedParams: Record<string, any> = {}
-  paramString.forEach(param => {
-    const [key, value] = param.split('=')    
-    parsedParams[key as string] = typeof value === 'undefined' ? true : value
-  })
+  const parsedParams: Record<string, any> = {};
+  paramString.forEach((param) => {
+    const [key, value] = param.split("=");
+    parsedParams[key as string] = typeof value === "undefined" ? true : value;
+  });
 
   return parsedParams;
 }
@@ -117,20 +126,21 @@ function getQueryParams(): QueryParams {
  */
 function init() {
   /**
-   * Reading query params and pass 
-   * parsed params to `renderWidget` 
+   * Reading query params and pass
+   * parsed params to `renderWidget`
    */
-  const params = getQueryParams()
-  renderWidget(params)
-  
+  const params = getQueryParams();
+
+  renderWidget(params);
+
   /**
-   * Exposing renderWidget on window to make 
+   * Exposing renderWidget on window to make
    * it available globally. It will be used
    * on landing page, when configuration changes
-   * by user, this function will be called each 
-   * time to render a fresh copy of widget 
+   * by user, this function will be called each
+   * time to render a fresh copy of widget
    */
-  window.renderWidget = renderWidget
+  window.renderWidget = renderWidget;
 }
 
-init()
+init();
