@@ -231,13 +231,18 @@
         max-width: 100%;
         margin-right: 0;
         flex-direction: row;
+        font-weight: bold;
 
         p {
             margin: 0;
         }
 
-        span {
+        span.action-arrow {
             font-size: 18px;
+        }
+
+        span.action-short-text {
+            display: none;
         }
 
         img {
@@ -295,6 +300,42 @@
     &.color {
         .widget {
             background: linear-gradient(90deg, #42BE65 0%, #FFFFFF 50.23%, #FF4842 100%);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .widget-wrapper.widget-top-banner {
+        .widget-text {
+            padding-left: 10px;
+            justify-content: flex-start;
+            
+            img {
+                display: none;
+            }
+        }
+
+        .dismiss-widget {
+            width: 30px;
+        }
+
+        .widget-action {
+            right: 25px;
+            display: flex;
+
+            span.action-short-text {
+                display: block;
+            }
+
+            span.action-long-text {
+                display: none;
+            }
+        }
+
+        &.dark, &.color {
+            img.layout2-img-white, img.layout2-img-black {
+                display: none;
+            }
         }
     }
 }

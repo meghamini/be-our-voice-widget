@@ -1,7 +1,7 @@
 import BaseLayout from "./BaseLayout";
 
-import imgWhite from '/src/assets/images/mahsa-topbanner-black.png'
-import imgBlack from '/src/assets/images/mahsa-topbanner-white.png'
+import imgWhite from "/src/assets/images/mahsa-topbanner-black.png";
+import imgBlack from "/src/assets/images/mahsa-topbanner-white.png";
 
 export default class LayoutOne extends BaseLayout {
   name = "layout2";
@@ -18,8 +18,9 @@ export default class LayoutOne extends BaseLayout {
                 </div>
 
                 <a role="button" class="widget-action">
-                    See what you can do 
-                    <span>></span>
+                    <span class="action-long-text">See what you can do</span>
+                    <span class="action-short-text">More</span>
+                    <span class="action-arrow">></span>
                 </a>
             </div>
         </div>`;
